@@ -7,12 +7,21 @@
 #calculate class average
 
 students = []
-
 while True:
     name = input("Enter student name: ")
     score = int(input("What was the student's score?: "))
+    if score >= 90:
+        grade = "A"
+    elif score >= 80:
+        grade = "B"
+    elif score >= 70:
+        grade = "C"
+    elif score >= 65:
+        grade = "D"
+    else:
+        grade = "F"
     
-    students.append({"name": name, "score": score})
+    students.append({"name": name, "score": score, "grade": grade})
     
     another = input("Add another student? (yes/no): ").strip().lower()
     if another != "yes":
@@ -22,8 +31,4 @@ print("\nStudent Records")
 print("---------------------------")
 for student in students:
     result = "Pass" if student["score"] >= 65 else "Fail"
-    print(f"{student['name']} - {student['score']} - {result}")    
-
-#input("Woud you like to add another student?")
-#print("Student Records/n", "-------------------/n",)
-#print(student1, score, grade)
+    print(f"{student['name']} - {student['score']} {student['grade']} - {result}")
