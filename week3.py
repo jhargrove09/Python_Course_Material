@@ -39,3 +39,9 @@ for student in students:
         passed_count = passed_count + 1
 print()
 print(passed_count, "students passed this test.")
+
+total = 0
+for student in students:
+    total = total + student["score"]
+average = total / len(students)
+print(f"Class average: {average:.1f}")
