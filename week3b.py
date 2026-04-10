@@ -56,18 +56,31 @@ while True:
         added_count = 0
         while True:
             name = input("Enter student name: ")
-            score = int(input("Enter student score: "))
-            print()
-            grade = get_grade(score)
-            students.append({"name": name, "score": score, "grade": grade})
-            added_count = added_count + 1
+
+            duplicate = False
+            for student in students:
+                if student["name"].lower() == name.lower():
+                    duplicate = True
+                    break
+
+            if duplicate:
+                print(f"\n{name} is already active in this system. Please view by selecting #2 from the main menu.")
+                print()
+            else:
+                score = int(input("Enter student score: "))
+                print()
+                grade = get_grade(score)
+                students.append({"name": name, "score": score, "grade": grade})
+                added_count = added_count + 1
+
             another = input("Add another student? (yes/no): ").strip().lower()
             if another == "yes":
                 print("--")
             if another != "yes":
                 break
-        print("---------------------------")
-        print(f"{added_count} student(s) added.")
+        if added_count > 0:
+            print("---------------------------")
+            print(f"{added_count} student(s) added.")
 
     elif choice == "2":
         if len(students) == 0:
@@ -77,7 +90,7 @@ while True:
             print("---------------------------")
             for student in students:
                 result = "Pass" if student["score"] >= 65 else "Fail"
-                print(f"{student['name']} - {student['score']} {student['grade']} - {result}")
+                print(f"{student['name']}: {student['score']} {student['grade']} - {result}")
 
     elif choice == "3":
         if len(students) == 0:
