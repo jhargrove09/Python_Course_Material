@@ -32,3 +32,10 @@ print("---------------------------")
 for student in students:
     result = "Pass" if student["score"] >= 65 else "Fail"
     print(f"{student['name']} - {student['score']} {student['grade']} - {result}")
+
+passed_count = 0
+for student in students:
+    if student["score"] >= 65:
+        passed_count = passed_count + 1
+print()
+print(passed_count, "students passed this test.")
