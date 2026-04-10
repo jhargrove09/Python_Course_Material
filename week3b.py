@@ -46,8 +46,8 @@ while True:
     print("\n--- Menu ---")
     print("1. Add Student")
     print("2. View Students")
-    print("3. Exit")
-    print("4. Remove Student")
+    print("3. Remove Student")
+    print("4. Exit")
     choice = input("Select an option: ").strip()
     print("------------------------")
     print()
@@ -80,25 +80,25 @@ while True:
                 print(f"{student['name']} - {student['score']} {student['grade']} - {result}")
 
     elif choice == "3":
-        save_students(students)
-        print("Data saved. Thank you, have a great day!")
-        break
-
-    elif choice == "4":
         if len(students) == 0:
             print("No students on record.")
         else:
             print("\nStudent Records")
             print("---------------------------")
             for i, student in enumerate(students):
-                print(f"{i + 1}. {student['name']} - {student['score']} {student['grade']}")
+                print(f"{i + 1}. {student['name']}: {student['score']} {student['grade']}")
             print()
-            remove_choice = int(input("Which student do you want to remove: "))
+            remove_choice = int(input("Enter the number of the student to remove: "))
             if 1 <= remove_choice <= len(students):
                 removed = students.pop(remove_choice - 1)
                 print(f"\n{removed['name']} has been removed.")
             else:
                 print("Invalid number, please try again.")
+
+    elif choice == "4":
+        save_students(students)
+        print("Data saved. Thank you, have a great day!")
+        break
 
     else:
         print("Invalid option, please select 1, 2, 3, or 4.")
