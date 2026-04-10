@@ -56,13 +56,11 @@ while True:
         added_count = 0
         while True:
             name = input("Enter student name: ")
-
             duplicate = False
             for student in students:
                 if student["name"].lower() == name.lower():
                     duplicate = True
                     break
-
             if duplicate:
                 print(f"\n{name} is already active in this system. Please view by selecting #2 from the main menu.")
                 print()
@@ -72,7 +70,6 @@ while True:
                 grade = get_grade(score)
                 students.append({"name": name, "score": score, "grade": grade})
                 added_count = added_count + 1
-
             another = input("Add another student? (yes/no): ").strip().lower()
             if another == "yes":
                 print("--")
@@ -96,17 +93,40 @@ while True:
         if len(students) == 0:
             print("No students on record.")
         else:
-            print("\nStudent Records")
-            print("---------------------------")
-            for i, student in enumerate(students):
-                print(f"{i + 1}. {student['name']}: {student['score']} {student['grade']}")
-            print()
-            remove_choice = int(input("Enter the number of the student to remove: "))
-            if 1 <= remove_choice <= len(students):
-                removed = students.pop(remove_choice - 1)
-                print(f"\n{removed['name']} has been removed.")
-            else:
-                print("Invalid number, please try again.")
+            while True:
+                print("\nStudent Records")
+                print("---------------------------")
+                for i, student in enumerate(students):
+                    print(f"{i + 1}. {student['name']}: {student['score']} {student['grade']}")
+                print()
+                remove_choice = int(input("Enter the number of the student to remove: "))
+                if 1 <= remove_choice <= len(students):
+                    removed = students.pop(remove_choice - 1)
+                    print(f"\n{removed['name']} has been removed.")
+                else:
+                    print("Invalid number, please try again.")
+                    continue
+
+                if len(students) == 0:
+                    print("All students have been removed.")
+                    break
+
+                print("-----------------------------") 
+                print()   
+                print("Choose one below:")    
+                print("\n1. Remove another student")
+                print("2. Remove all students")
+                print("3. Go back to main menu")
+                follow_up = input("Select an option: ").strip()
+
+                if follow_up == "1":
+                    continue
+                elif follow_up == "2":
+                    students.clear()
+                    print("All students have been removed.")
+                    break
+                else:
+                    break
 
     elif choice == "4":
         save_students(students)
