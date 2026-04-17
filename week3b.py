@@ -9,6 +9,8 @@
 #when choice 3 selected
 #print("Data saved. Thank you, have a great day!")
 
+#grade calculator
+
 def get_grade(score):
     if score >= 90:
         return "A"
@@ -21,20 +23,19 @@ def get_grade(score):
     else:
         return "F"
 
+#load file
 def load_students():
     students = []
     try:
         with open("students.txt", "r") as f:
             for line in f:
                 parts = line.strip().split(",")
-                name = parts[0]
-                score = int(parts[1])
-                grade = parts[2]
-                students.append({"name": name, "score": score, "grade": grade})
+                students.append({"name": parts[0], "score": int(parts[1]), "grade": parts[2]})
     except:
         students = []
     return students
 
+#save file
 def save_students(students):
     with open("students.txt", "w") as f:
         for student in students:
